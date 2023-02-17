@@ -11,6 +11,8 @@ public class PlantformerPlayer : MonoBehaviour
     private BoxCollider2D box;
 
     private Animator anim;
+    [SerializeField] private Collider2D standing;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +27,25 @@ public class PlantformerPlayer : MonoBehaviour
         float deltaX = Input.GetAxis("Horizontal") * speed;
         Vector2 movement = new Vector2(deltaX, body.velocity.y);
         body.velocity = movement;
-
         Vector3 max = box.bounds.max;
         Vector3 min = box.bounds.min;
         Vector2 corner1 = new Vector2(max.x, min.y - .1f);
         Vector2 corner2 = new Vector2(min.x, min.y - .2f);
         Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+            anim.SetInteger("Direction", 1);
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+            anim.SetInteger("Direction", 0);
+        }
+
+        
+    
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        
 
         bool grounded = false;
         if (hit != null)
@@ -38,6 +53,18 @@ public class PlantformerPlayer : MonoBehaviour
             grounded = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
+        {
+            standing.enabled = false;
+            anim.SetBool("Ducking", true);
+        }
+        else
+        {
+            standing.enabled = true;
+            anim.SetBool("Ducking", false);
+        }
+        
+        
         body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0)) ? 0 : 1;
         if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -63,15 +90,15 @@ public class PlantformerPlayer : MonoBehaviour
         
         
         anim.SetFloat("Speed", Mathf.Abs(deltaX));
-        Vector3 pScale = Vector3.one;
-        if (platform != null)
-        {
-            pScale = platform.transform.localScale;
-        }
-        if (Mathf.Approximately(deltaX, 0))
-        {
-            transform.localScale = new Vector3(Mathf.Sign(deltaX)/pScale.x, 1/pScale.y, 1);
-        }
+       // Vector3 pScale = Vector3.one;
+       // if (platform != null)
+       // {
+       //     pScale = platform.transform.localScale;
+       // }
+       // if (Mathf.Approximately(deltaX, 0))
+        //{
+        //    transform.localScale = new Vector3(Mathf.Sign(deltaX)/pScale.x, 1/pScale.y, 1);
+       // }
         
     }
     
