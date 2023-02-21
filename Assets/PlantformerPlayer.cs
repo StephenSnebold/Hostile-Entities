@@ -11,6 +11,8 @@ public class PlantformerPlayer : MonoBehaviour
     private BoxCollider2D box;
 
     private Animator anim;
+    private bool faceRight = true;
+
     [SerializeField] private Collider2D standing;
     
     // Start is called before the first frame update
@@ -22,7 +24,7 @@ public class PlantformerPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         float deltaX = Input.GetAxis("Horizontal") * speed;
         Vector2 movement = new Vector2(deltaX, body.velocity.y);
