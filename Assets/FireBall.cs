@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FireBall : MonoBehaviour
@@ -17,5 +20,10 @@ public class FireBall : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }

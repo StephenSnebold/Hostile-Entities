@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07afb598fd1da4d48991a2d5ca96cd4c
+guid: cdbe6a2566096b7489567a8628c10f6b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_0
+      name: CycloneFire-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca948a2227f2abf498e03625735b5944
-      internalID: 1727900996
+      spriteID: d6ccb3918647dc940b2a4221ae8fc18b
+      internalID: -272340141
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_1
+      name: CycloneFire-Sheet_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfcfae9cdff24634e862129e095db7d0
-      internalID: -1569515065
+      spriteID: c28f1ef389b4ea34d9e1c265c6957689
+      internalID: -1629758503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_2
+      name: CycloneFire-Sheet_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8255b4272b6ece84f82fb627396ee3f0
-      internalID: 569247178
+      spriteID: 7bbba2ed97d19d040b2eb8718e5931d1
+      internalID: 1802689690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_3
+      name: CycloneFire-Sheet_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf9e0530db040594ab4bb302921069a7
-      internalID: 1258100105
+      spriteID: 6fa287e53c638704da498553f64c5a94
+      internalID: -403297973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_4
+      name: CycloneFire-Sheet_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d9559fb4eb742b4abccba365fc79bb3
-      internalID: -560152021
+      spriteID: bc5c6c53917260f40a255a4f82e0572e
+      internalID: 352610894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_5
+      name: CycloneFire-Sheet_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b28e5cc3de8e1b7479fefc0945f2120f
-      internalID: 1023193021
+      spriteID: 259d1270d0af92045b1947eb1ba46b98
+      internalID: 974494919
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_6
+      name: CycloneFire-Sheet_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3d4b306c899f4e4f9df3670f824dcd4
-      internalID: 2045323187
+      spriteID: 54f6d924c4c24e948a1b6e80d43bf309
+      internalID: -1058498560
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_7
+      name: CycloneFire-Sheet_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba36d6554af872145b6a9f23820f6af8
-      internalID: 1573504474
+      spriteID: 6c9b801050e90d448b1db8eb85708e5d
+      internalID: -1399138669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_8
+      name: CycloneFire-Sheet_8
       rect:
         serializedVersion: 2
         x: 512
@@ -287,29 +287,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2a47d76f276c3642b59359888cce0a7
-      internalID: -513505022
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cyclone Enemy-Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0db67e0102d203344b74af2c0c2a8161
-      internalID: 1049578164
+      spriteID: 0621579998a67934c887746ea9700c42
+      internalID: -522791009
       vertices: []
       indices: 
       edges: []
@@ -325,16 +304,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cyclone Enemy-Sheet_1: -1569515065
-      Cyclone Enemy-Sheet_9: 1049578164
-      Cyclone Enemy-Sheet_4: -560152021
-      Cyclone Enemy-Sheet_8: -513505022
-      Cyclone Enemy-Sheet_6: 2045323187
-      Cyclone Enemy-Sheet_0: 1727900996
-      Cyclone Enemy-Sheet_3: 1258100105
-      Cyclone Enemy-Sheet_2: 569247178
-      Cyclone Enemy-Sheet_5: 1023193021
-      Cyclone Enemy-Sheet_7: 1573504474
+      CycloneFire-Sheet_0: -272340141
+      CycloneFire-Sheet_2: 1802689690
+      CycloneFire-Sheet_3: -403297973
+      CycloneFire-Sheet_6: -1058498560
+      CycloneFire-Sheet_4: 352610894
+      CycloneFire-Sheet_5: 974494919
+      CycloneFire-Sheet_7: -1399138669
+      CycloneFire-Sheet_8: -522791009
+      CycloneFire-Sheet_1: -1629758503
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
