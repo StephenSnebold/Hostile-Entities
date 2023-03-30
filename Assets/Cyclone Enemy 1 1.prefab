@@ -129,6 +129,7 @@ MonoBehaviour:
   Cyclonefire2: {fileID: 5971471265076318678, guid: 648c49a17f458b146a250b7a23e4fe44, type: 3}
   timeBewteenShots: 0
   sprite: {fileID: 4240100569145834949}
+  controller: {fileID: 7969822768541799897, guid: 7db8b0d49bd3a5b40b816908bbd1d968, type: 3}
   deathEffect: {fileID: 7112846129106795784, guid: 4bc9758b65de5e54ab3d775e0d6c2b69, type: 3}
 --- !u!58 &4240100569145834950
 CircleCollider2D:

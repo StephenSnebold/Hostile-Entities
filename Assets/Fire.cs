@@ -8,8 +8,11 @@ public class Fire : MonoBehaviour
 {
     private Animator anim;
     private BoxCollider2D box;
-
+    
     public bool deadly = true;
+
+    //private Coroutine co;
+    
 
     [SerializeField] private Collider2D deathbox;
 
@@ -46,8 +49,17 @@ public class Fire : MonoBehaviour
         {
             deathbox.enabled = true;
         }
+
+        
+        
     }
-    
-    
-    
+
+    public void KillProjectile()
+    {
+        StopAllCoroutines();
+        Destroy(gameObject);
+    }
+
+
+
 }

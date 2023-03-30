@@ -12,8 +12,8 @@ public class CycloneEnemy : MonoBehaviour
     public float speed = 3;
     private Animator anim;
     private Rigidbody2D rb2d;
-    
-    
+
+
     bool faceRight = false;
     private bool walking;
     private int direction = -1;
@@ -25,7 +25,9 @@ public class CycloneEnemy : MonoBehaviour
     public float timeBewteenShots;
 
     public SpriteRenderer sprite;
-    
+
+    public Fire controller;
+
 
     public GameObject deathEffect;
 
@@ -43,6 +45,7 @@ public class CycloneEnemy : MonoBehaviour
     void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //controller.KillProjectile();
         Destroy(gameObject);
     }
     
@@ -50,6 +53,7 @@ public class CycloneEnemy : MonoBehaviour
     void Start()
     {
         timeBewteenShots = 34;
+
 
 
 

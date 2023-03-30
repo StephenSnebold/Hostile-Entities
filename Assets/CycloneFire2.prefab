@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5be9663ff101bd43901dd02bbbffd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 5245728944175875379, guid: 0e9d305edaf90db49901435177fb0a6b, type: 3}
   deadly: 1
   deathbox: {fileID: 5971471265076318675}
 --- !u!60 &5971471265076318675
