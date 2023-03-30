@@ -3,7 +3,10 @@ guid: 49347aa9199ac9f4f9d82e3619ec8b72
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - fireplace: {instanceID: 0}
+  - fire: {fileID: 7969822768541799901, guid: 7db8b0d49bd3a5b40b816908bbd1d968, type: 3}
+  - deathEffect: {fileID: 7112846129106795784, guid: 4bc9758b65de5e54ab3d775e0d6c2b69, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

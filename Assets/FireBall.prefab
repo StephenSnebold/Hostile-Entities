@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4209035482792447997}
   m_Layer: 0
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 2918626656896884394}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f01e4e60b8eae9a46b8ca9cb33d0549f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ca878cbf2f50774a812433fc5f3493f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

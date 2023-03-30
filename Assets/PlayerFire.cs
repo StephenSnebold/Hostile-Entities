@@ -6,8 +6,12 @@ public class PlayerFire : MonoBehaviour
 {
 
     public Transform gunpoint;
+    public Transform gunpoint2;
 
     public GameObject fireBallPrefab;
+    public GameObject fireBall2Prefab;
+    
+    private bool faceRight = true;
     // Start is called before the first frame update
    
 
@@ -18,10 +22,30 @@ public class PlayerFire : MonoBehaviour
         {
             Shoot();
         }
+        
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !faceRight) 
+        {
+            faceRight = !faceRight;
+        } 
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) && faceRight) 
+        {
+            faceRight = !faceRight;
+        }
     }
     
     void Shoot()
     {
-        Instantiate(fireBallPrefab, gunpoint.position, gunpoint.rotation);
+        if (faceRight)
+        {
+            Instantiate(fireBallPrefab, gunpoint.position, gunpoint.rotation);
+        }
+        else
+        {
+            Instantiate(fireBall2Prefab, gunpoint2.position, gunpoint2.rotation);
+        }
+        
     }
+    
+   
+    
 }
