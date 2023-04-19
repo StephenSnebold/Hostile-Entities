@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class PlantformerPlayer : MonoBehaviour
+public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
 {
     
     public float jumpForce = 36.0f;
@@ -14,6 +15,11 @@ public class PlantformerPlayer : MonoBehaviour
     private BoxCollider2D box;
 
     private Animator anim;
+
+    private Renderer rend;
+
+    private Color color;
+    
     public bool faceRight = true;
 
     public int Maxhealth = 100;
@@ -54,8 +60,16 @@ public class PlantformerPlayer : MonoBehaviour
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
     }
-    
-    
+
+    public void LoadData(GameData data)
+    {
+        this.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPosition = this.transform.position;
+    }
     /*
      *
      *SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
@@ -99,7 +113,7 @@ public class PlantformerPlayer : MonoBehaviour
      * 
      */
 
-
+    
    
 
     private void Damage(int damage)
@@ -112,6 +126,8 @@ public class PlantformerPlayer : MonoBehaviour
             Debug.Log("You Died");
         }
         
+        
+        
     }
     
     
@@ -122,6 +138,11 @@ public class PlantformerPlayer : MonoBehaviour
         //body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         box = GetComponent<BoxCollider2D>();
+        rend = GetComponent<Renderer>();
+        color = rend.material.color;
+        Physics2D.IgnoreLayerCollision(3,7,false);
+
+
     }
     
     private void Update()
@@ -307,14 +328,58 @@ public class PlantformerPlayer : MonoBehaviour
         }
     }
 
-    
-    
+
+    IEnumerator Invincablity()
+    {
+        Physics2D.IgnoreLayerCollision(3,7,true);
+        
+        color.a = 0.5f;
+        rend.material.color = color;
+
+        yield return new WaitForSeconds(.3f);
+        
+        color.a = 1f;
+        rend.material.color = color;
+        
+        yield return new WaitForSeconds(.3f);
+
+        color.a = 0.5f;
+        rend.material.color = color;
+
+        yield return new WaitForSeconds(.3f);
+        
+        color.a = 1f;
+        rend.material.color = color;
+        
+        yield return new WaitForSeconds(.3f);
+        
+        color.a = 0.5f;
+        rend.material.color = color;
+
+        yield return new WaitForSeconds(.3f);
+        
+        color.a = 1f;
+        rend.material.color = color;
+        
+        yield return new WaitForSeconds(.3f);
+        
+        color.a = 0.5f;
+        rend.material.color = color;
+
+        yield return new WaitForSeconds(.3f);
+        Physics2D.IgnoreLayerCollision(3,7,false);
+        color.a = 1f;
+        rend.material.color = color;
+        
+        
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "Enemy")
+        if (col.tag == "Enemy" || col.tag == "EnemyShots")
         {
             Damage(25);
+            StartCoroutine(Invincablity());
             Debug.Log("hitByEnemy");
         }
 

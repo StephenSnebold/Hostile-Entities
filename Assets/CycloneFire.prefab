@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7969822768541799902}
   - component: {fileID: 7969822768541799897}
   - component: {fileID: 7969822768541799896}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CycloneFire
-  m_TagString: Untagged
+  m_TagString: EnemyShots
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5be9663ff101bd43901dd02bbbffd35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 5245728944175875379, guid: 0e9d305edaf90db49901435177fb0a6b, type: 3}
+  delete: 0
   deadly: 1
   deathbox: {fileID: 7969822768541799896}
 --- !u!60 &7969822768541799896

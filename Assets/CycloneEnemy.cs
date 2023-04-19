@@ -45,7 +45,7 @@ public class CycloneEnemy : MonoBehaviour
     void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
-        //controller.KillProjectile();
+        controller.KillProjectile();
         Destroy(gameObject);
     }
     

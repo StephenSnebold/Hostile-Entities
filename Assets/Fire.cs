@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Fire : MonoBehaviour
 {
     private Animator anim;
     private BoxCollider2D box;
+
+    public bool delete;
     
     public bool deadly = true;
 
@@ -20,6 +23,7 @@ public class Fire : MonoBehaviour
 // Start is called before the first frame update
     void Start()
     {
+        delete = false;
         anim = GetComponent<Animator>();
         box = GetComponent<BoxCollider2D>();
     }
@@ -31,9 +35,17 @@ public class Fire : MonoBehaviour
         anim.SetBool("Deadly", false);
         deadly = false;
         yield return new WaitForSeconds(.3f);
-        
-        Destroy(gameObject);
+
+        delete = true;
     }
+    
+    public void KillProjectile()
+    {
+        delete = true;
+        StopAllCoroutines();
+        //Debug.Log("DiedEarly");
+    }
+
     
     
 
@@ -49,17 +61,21 @@ public class Fire : MonoBehaviour
         {
             deathbox.enabled = true;
         }
+        
+        if (delete)
+        {
+            //Debug.Log("DestroyedFire");
+            Destroy(gameObject);
+        }
+
 
         
         
     }
 
-    public void KillProjectile()
-    {
-        StopAllCoroutines();
-        Destroy(gameObject);
-    }
 
+
+    
 
 
 }
