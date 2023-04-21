@@ -16,6 +16,9 @@ public class MainMenu : Menu
     [SerializeField] private Button continueGameButton;
     [SerializeField] private Button loadGameButton;
 
+    private Scene current;
+    
+
     private void Start()
     {
         if (!DataPersistanceManager.instance.HasData())
@@ -54,7 +57,8 @@ public class MainMenu : Menu
         DisableMenuButtons();
         DataPersistanceManager.instance.SaveGame();
         
-        SceneManager.LoadSceneAsync("SampleScene");
+        //gets scene that player is in.
+        SceneManager.LoadSceneAsync(DataPersistanceManager.instance.GetSavedScene());
     }
 
     private void DisableMenuButtons()

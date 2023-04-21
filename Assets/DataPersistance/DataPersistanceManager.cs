@@ -7,6 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class DataPersistanceManager : MonoBehaviour
 {
+
+    [Header("Debugging")]
+    [SerializeField] private bool disableDataPersistence = false;
+
     [Header("File Storage Config")] 
     [SerializeField] private string fileName;
 
@@ -27,7 +31,9 @@ public class DataPersistanceManager : MonoBehaviour
     {
         if (instance != null)
         {
-            Debug.LogError("Found more than one instance in the scene");
+            Debug.Log("Found more than one instance in the scene");
+            Destroy(this.gameObject);
+            return;
         }
 
         instance = this;
@@ -51,6 +57,8 @@ public class DataPersistanceManager : MonoBehaviour
         
         LoadGame();
     }
+    
+    
 
     private void OnEnable()
     {
@@ -69,24 +77,38 @@ public class DataPersistanceManager : MonoBehaviour
 
     public void LoadGame()
     {
-        this.gameData = dataHander.Load(selectedProfileId);
         
+        if (disableDataPersistence) 
+            {
+                return;
+            }
+    
+    
+        this.gameData = dataHander.Load(selectedProfileId);
         if (this.gameData == null)
         {
             Debug.Log("No data was found, New Game needs to be started");
-            //NewGame();
+            NewGame();
             return;
         }
 
         foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
         {
-            dataPersistanceObj.loadData(gameData);
+            dataPersistanceObj.LoadData(gameData);
         }
         
     }
 
     public void SaveGame()
     {
+    
+        if (disableDataPersistence) 
+        {
+            return;
+        }
+
+        
+
         if (this.gameData == null)
         {
             Debug.LogWarning("No data was found. Start a New Game");
@@ -96,10 +118,17 @@ public class DataPersistanceManager : MonoBehaviour
         
         foreach (IDataPersistance dataPersistanceObj in dataPersistanceObjects)
         {
-            dataPersistanceObj.saveData(gameData);
+            dataPersistanceObj.SaveData(gameData);
         }
 
         gameData.lastUpdated = System.DateTime.Now.ToBinary();
+        
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (!scene.name.Equals("Main Menu"))
+        {
+            gameData.currentScene = scene.name;
+        }
         
         dataHander.Save(gameData, selectedProfileId);
     }
@@ -107,7 +136,7 @@ public class DataPersistanceManager : MonoBehaviour
     private List<IDataPersistance> FindAllDataPersistanceObjects()
     {
         IEnumerable<IDataPersistance> dataPersistanceObjects =
-            FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistance>();
+            FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistance>();
 
         return new List<IDataPersistance>(dataPersistanceObjects);
     }
@@ -120,6 +149,16 @@ public class DataPersistanceManager : MonoBehaviour
     public bool HasData()
     {
         return gameData != null;
+    }
+
+    public string GetSavedScene()
+    {
+        if (gameData == null)
+        {
+            return null;
+        }
+
+        return gameData.currentScene;
     }
 
 }

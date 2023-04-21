@@ -53,7 +53,7 @@ public class CycloneEnemy : MonoBehaviour
     void Start()
     {
         timeBewteenShots = 34;
-
+        
 
 
 
@@ -103,11 +103,20 @@ public class CycloneEnemy : MonoBehaviour
                 if (!faceRight)
                 {
                     //Vector2 currentScale = gameObject.transform.localScale;
-                    Instantiate(Cyclonefire, fireplace.position, fireplace.rotation);
+                   var Fire = Instantiate(Cyclonefire, fireplace.position, fireplace.rotation);
+                   Fire.transform.parent = gameObject.transform;
+                   Physics2D.IgnoreLayerCollision(9, 0, true);
+                   Physics2D.IgnoreLayerCollision(9, 6, true);
+                   
+
                 }
                 else if (faceRight)
                 {
-                    Instantiate(Cyclonefire2, fireplace.position, fireplace.rotation);
+                   var Fire2 = Instantiate(Cyclonefire2, fireplace.position, fireplace.rotation);
+                   Fire2.transform.parent = gameObject.transform;
+                   Physics2D.IgnoreLayerCollision(9, 0, true);
+                   Physics2D.IgnoreLayerCollision(9, 6, true);
+                   
                 }
                 
 
@@ -138,13 +147,16 @@ public class CycloneEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        
         if (col.tag == "bullet")
         {
             TakeDamage(10);
             StartCoroutine(Cyclonehit());
         }
         
-        if (col.tag == "Wall" || col.tag == "turnAround")
+        
+        
+        if (col.tag == "Wall"  || col.tag == "turnAround")
         {
             direction *= -1;
             changediretion = true;

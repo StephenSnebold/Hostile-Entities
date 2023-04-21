@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
+public class PlantformerPlayer : MonoBehaviour, IDataPersistance
 {
     
     public float jumpForce = 36.0f;
@@ -14,15 +14,21 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
     private Rigidbody2D body;
     private BoxCollider2D box;
 
+    public LevelSelect controller;
+
     private Animator anim;
 
     private Renderer rend;
+
+    public int TeleportTo;
 
     private Color color;
     
     public bool faceRight = true;
 
-    public int Maxhealth = 100;
+    [SerializeField] private int Maxhealth = 100;
+    
+    
     
     
     [Range(0, 1)] [SerializeField] private float CrouchSpeed = .36f;
@@ -59,6 +65,11 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+        
+        
+        
+        
     }
 
     public void LoadData(GameData data)
@@ -70,49 +81,6 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
     {
         data.playerPosition = this.transform.position;
     }
-    /*
-     *
-     *SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
-	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;			// Amount of maxSpeed applied to crouching movement. 1 = 100%
-	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;	// How much to smooth out the movement
-	[SerializeField] private bool m_AirControl = false;							// Whether or not a player can steer while jumping;
-	[SerializeField] private LayerMask m_WhatIsGround;							// A mask determining what is ground to the character
-	[SerializeField] private Transform m_GroundCheck;							// A position marking where to check if the player is grounded.
-	[SerializeField] private Transform m_CeilingCheck;							// A position marking where to check for ceilings
-	[SerializeField] private Collider2D m_CrouchDisableCollider;				// A collider that will be disabled when crouching
-
-	const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-	private bool m_Grounded;            // Whether or not the player is grounded.
-	const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
-	private Rigidbody2D m_Rigidbody2D;
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-	private Vector3 m_Velocity = Vector3.zero;
-
-	[Header("Events")]
-	[Space]
-
-	public UnityEvent OnLandEvent;
-
-	[System.Serializable]
-	public class BoolEvent : UnityEvent<bool> { }
-
-	public BoolEvent OnCrouchEvent;
-	private bool m_wasCrouching = false;
-
-	private void Awake()
-	{
-		m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-		if (OnLandEvent == null)
-			OnLandEvent = new UnityEvent();
-
-		if (OnCrouchEvent == null)
-			OnCrouchEvent = new BoolEvent();
-	}
-     * 
-     * 
-     */
-
     
    
 
@@ -122,7 +90,9 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
 
         if (Maxhealth <= 0)
         {
-            SceneManager.LoadScene("SampleScene");//temporarycode until gameover screen.
+            //SceneManager.LoadScene("SampleScene");//temporarycode until gameover screen.
+            Maxhealth = 100;
+            DataPersistanceManager.instance.LoadGame();
             Debug.Log("You Died");
         }
         
@@ -141,6 +111,20 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
         rend = GetComponent<Renderer>();
         color = rend.material.color;
         Physics2D.IgnoreLayerCollision(3,7,false);
+        Physics2D.IgnoreLayerCollision(3,9,false);
+
+        //TeleportTo = controller.Teleporting();
+
+        //if (TeleportTo != -1)
+        //{
+            
+       // }
+       
+        
+        DataPersistanceManager.instance.SaveGame();
+
+        
+        //controller.setMaxHealth(Maxhealth);
 
 
     }
@@ -182,79 +166,7 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
             Application.Quit();
         }
         
-        /*
-        float deltaX = Input.GetAxis("Horizontal") * speed;
-        Vector2 movement = new Vector2(deltaX, body.velocity.y);
-        body.velocity = movement;
-        Vector3 max = box.bounds.max;
-        Vector3 min = box.bounds.min;
-        Vector2 corner1 = new Vector2(max.x, min.y - .1f);
-        Vector2 corner2 = new Vector2(min.x, min.y - .2f);
-        Collider2D hit = Physics2D.OverlapArea(corner1, corner2);
         
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
-            anim.SetInteger("Direction", 1);
-        } else if (Input.GetKeyDown(KeyCode.LeftArrow)) {
-            anim.SetInteger("Direction", 0);
-        }
-
-        
-    
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-        
-
-        bool grounded = false;
-        if (hit != null)
-        {
-            grounded = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.DownArrow) && grounded)
-        {
-            standing.enabled = false;
-            anim.SetBool("Ducking", true);
-        }
-        else if(Input.GetKeyUp(KeyCode.DownArrow))
-        {
-            standing.enabled = true;
-            anim.SetBool("Ducking", false);
-        }
-        
-        
-        body.gravityScale = (grounded && Mathf.Approximately(deltaX, 0)) ? 0 : 1;
-        if (grounded && Input.GetKeyDown(KeyCode.Space))
-        {
-            body.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
-
-     
-
-        MovingPlatform platform = null;
-        if (hit != null)
-        {
-            platform = hit.GetComponent<MovingPlatform>();
-        }
-
-        if (platform != null)
-        {
-            transform.parent = platform.transform;
-        }
-        else
-        {
-            transform.parent = null;
-        }
-        
-        
-        
-        
-        anim.SetFloat("Speed", Mathf.Abs(deltaX));
-        
-        */
-        
-       // Vector3 pScale = Vector3.one;
        
         
     }
@@ -332,6 +244,7 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
     IEnumerator Invincablity()
     {
         Physics2D.IgnoreLayerCollision(3,7,true);
+        Physics2D.IgnoreLayerCollision(3,9,true);
         
         color.a = 0.5f;
         rend.material.color = color;
@@ -368,6 +281,8 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
 
         yield return new WaitForSeconds(.3f);
         Physics2D.IgnoreLayerCollision(3,7,false);
+        Physics2D.IgnoreLayerCollision(3,9,false);
+        
         color.a = 1f;
         rend.material.color = color;
         
@@ -378,7 +293,10 @@ public class PlantformerPlayer : MonoBehaviour//, IDataPersistance
     {
         if (col.tag == "Enemy" || col.tag == "EnemyShots")
         {
-            Damage(25);
+            Damage(10);
+            //controller.setMaxHealth(Maxhealth);
+            
+            
             StartCoroutine(Invincablity());
             Debug.Log("hitByEnemy");
         }

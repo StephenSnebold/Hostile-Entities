@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 
@@ -9,6 +10,12 @@ using UnityEngine;
 public class GameData
 {
     public long lastUpdated;
+
+    public string currentScene;
+
+    public bool unlockedLevel3;
+
+    public int Teleporter;
     
     public Vector3 playerPosition;
     public Dictionary<string, bool> coinsCollected;
@@ -17,6 +24,9 @@ public class GameData
     {
         playerPosition = new Vector3(-6.8f, -3.68f, 1);
         coinsCollected = new Dictionary<string, bool>();
+        currentScene = "";
+        unlockedLevel3 = false;
+        Teleporter = -1;
     }
 
     public int GetPercentageComplete()
@@ -41,6 +51,7 @@ public class GameData
 
     }
 
+ 
 }
 
 

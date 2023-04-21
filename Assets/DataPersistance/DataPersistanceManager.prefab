@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99756572fb82d94f8403c6c8084666f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disableDataPersistence: 0
   fileName: HostileEntites.game
+  useEncyption: 0
