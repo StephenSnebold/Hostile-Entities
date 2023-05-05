@@ -31,7 +31,7 @@ public class CycloneEnemy : MonoBehaviour
 
     public GameObject deathEffect;
 
-    public void TakeDamage(int damage)
+    private void TakeDamage(int damage)
     {
         health -= damage;
 
@@ -120,10 +120,10 @@ public class CycloneEnemy : MonoBehaviour
                 }
                 
 
-            yield return new WaitForSeconds(8);
+                yield return new WaitForSeconds(8);
             
 
-            StartCoroutine(CycloneAI());
+                StartCoroutine(CycloneAI());
 
             //timeBewteenShots = 64;
 

@@ -90,9 +90,10 @@ public class PlantformerPlayer : MonoBehaviour, IDataPersistance
 
         if (Maxhealth <= 0)
         {
-            //SceneManager.LoadScene("SampleScene");//temporarycode until gameover screen.
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);//temporarycode until gameover screen.
             Maxhealth = 100;
-            DataPersistanceManager.instance.LoadGame();
+            //DataPersistanceManager.instance.LoadGame();
             Debug.Log("You Died");
         }
         

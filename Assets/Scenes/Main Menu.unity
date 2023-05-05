@@ -2110,7 +2110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4272345787230551395, guid: 665f3ffda81f17e43a6141858a7278f7, type: 3}
       propertyPath: useEncyption
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4272345787230551395, guid: 665f3ffda81f17e43a6141858a7278f7, type: 3}
       propertyPath: disableDataPersistence

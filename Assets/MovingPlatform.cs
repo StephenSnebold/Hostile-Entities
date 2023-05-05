@@ -36,7 +36,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "Player" && col.GetContact(0).normal.y==-1)
+        if (col.gameObject.layer.Equals(3) && col.GetContact(0).normal.y==-1)
         {
             col.gameObject.transform.SetParent(transform);
             
@@ -48,7 +48,7 @@ public class MovingPlatform : MonoBehaviour
 
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.name == "Player")
+        if (col.gameObject.layer.Equals(3))
         {
             col.gameObject.transform.SetParent(null);
         }
