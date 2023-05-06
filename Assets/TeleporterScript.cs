@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,19 +25,23 @@ public class TeleporterScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-        switch (TeleporterID)
+        if (collision.gameObject.layer.Equals(3))
         {
-            case 0:
-                SceneManager.LoadScene("HositleEntities_Level2");
-                break;
-            case 1:
-                SceneManager.LoadScene("HE_Level3");
-                break;
-            case 2:
-                SceneManager.LoadScene("SampleScene");
-                break;
+            switch (TeleporterID)
+            {
+                case 0:
+                    SceneManager.LoadScene("HositleEntities_Level2");
+                    break;
+                case 1:
+                    SceneManager.LoadScene("HE_Level3");
+                    break;
+                case 2:
+                    SceneManager.LoadScene("SampleScene");
+                    break;
+            }
         }
+
+        
         
         if (Input.GetKey(KeyCode.UpArrow) && collision.tag == "Player")
         {
